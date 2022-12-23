@@ -1,47 +1,13 @@
-import requests
-from bs4 import BeautifulSoup
-
-
-import firebase_admin
-from firebase_admin import credentials, firestore
-cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
+from flask import Flask, render_template, request
 from flask import Flask, render_template, request,make_response, jsonify
 
 app = Flask(__name__)
 
 @app.route("/GG")
-def movie():
-    url = "https://www.cheogajip.com.tw/menu/"
-    Data = requests.get(url)
-    Data.endcoding = "utf-8"
-    sp = BeautifulSoup(Data.text, "html.parser")
-    meals=sp.select(".rightBox .Txt ")
-    for t in meals:
-      name=t.find("a").get("title")
-      say=t.find("p").text
-      hyperlink=t.find("a").get("href")
-      print(name + ":" + say)
-        if "辣" in say:
-         taste ="辣"
-        else:
-         taste = "不辣"
-        
-
-
-      doc = {
-          "name": name,
-          "say": say,
-          "hyperlink": hyperlink,
-          "taste": taste,
-          
-          
-
-      }
-
-      doc_ref = db.collection("chicken")
+@@ -34,6 +35,20 @@ def movie():
       doc_ref.set(doc)
 
 
@@ -74,7 +40,6 @@ def search_GG():
         return info
     else:  
         return render_template("search_GG.html")
-
 @app.route("/")
 def index():
     homepage = "<h1>起家雞 Python 網頁</h1>"
