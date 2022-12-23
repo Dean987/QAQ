@@ -30,7 +30,7 @@ def movie():
 
       }
 
-      doc_ref = db.collection("chicken").document(name)
+      doc_ref = db.collection("chicken")
       doc_ref.set(doc)
 
 
