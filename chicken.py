@@ -41,7 +41,7 @@ def search_GG():
         info = ""     
         collection_ref = db.collection("chicken")
         for doc in docs:
-            if GG in doc.to_dict()["name"]: 
+            if GGTitle in doc.to_dict()["name"]: 
                 info += "品名：<a target = _blank href=" + doc.to_dict()["hyperlink"] + ">" + doc.to_dict()["name"] + "</a>" + "<br>" 
                 info += "產品介紹：" + doc.to_dict()["say"] + "<br><br>"
         if info == "":
