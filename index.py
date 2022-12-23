@@ -24,10 +24,20 @@ def movie():
       say=t.find("p").text
       hyperlink=t.find("a").get("href")
       print(name + ":" + say)
+        if "辣" in say:
+         taste ="辣"
+        else:
+         taste = "不辣"
+        
+
+
       doc = {
           "name": name,
           "say": say,
           "hyperlink": hyperlink,
+          "taste": taste,
+          
+          
 
       }
 
